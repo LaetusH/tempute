@@ -3,9 +3,12 @@
         label: {type: String, required: true},
         icon: {type: String, required: true}
     })
+
+    import {inject} from 'vue'
+    const {_, updateCurrentPage} = inject('currentPage')
 </script>
 <template>
-    <div class="menu-item">
+    <div class="menu-item" @click="updateCurrentPage(label)">
         <img :src="icon" alt="" class="menu-item-img"/>
         <span>{{label}}</span>
     </div>

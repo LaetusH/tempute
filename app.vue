@@ -11,12 +11,17 @@ useHead({
   ]
 })
 </script>
-
 <template>
   <div>
     <NuxtPage />
   </div>
 </template>
 <style>
- /* * {outline: 1px solid red;} */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    html {
+        scrollbar-width: none;
+    }
+    /* * {outline: 1px solid red;}*/
 </style>

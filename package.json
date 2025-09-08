@@ -10,9 +10,22 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.13",
     "@vite-pwa/nuxt": "^1.0.4",
     "nuxt": "^4.0.3",
+    "tailwindcss": "^4.1.13",
     "vue": "^3.5.20",
     "vue-router": "^4.5.1"
+  },
+  "overrides": {
+    "ansi-regex": "^6.0.1",
+    "ansi-styles": "^6.2.1",
+    "color-name": "^1.1.4",
+    "supports-color": "^9.0.0",
+    "strip-ansi": "^7.1.0",
+    "string-width": "^5.1.2",
+    "wrap-ansi": "^9.0.0",
+    "cliui": "^8.0.1",
+    "yargs": "^17.7.2"
   }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="footer">
+    <div class="footer bg-gray-300">
         <MainMenu/>
     </div>
 </template>
@@ -10,6 +10,5 @@
         left: 0;
         width: 100%;
         height: 12%;
-        background-color: beige;
     }
 </style>

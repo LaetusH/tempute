@@ -1,14 +1,5 @@
 <template>
-    <div class="footer bg-gray-300">
+    <div class="fixed bg-gray-300 h-1/8 sm:h-1/10 w-full left-0 bottom-0">
         <MainMenu/>
     </div>
 </template>
-<style scoped>
-    .footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 12%;
-    }
-</style>

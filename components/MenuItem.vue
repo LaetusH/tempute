@@ -5,21 +5,8 @@ defineProps({
 })
 </script>
 <template>
-    <div class="menu-item">
-        <img :src="icon" alt="" class="menu-item-img"/>
+    <div class="flex flex-col items-center gap-0.5 p-2">
+        <img :src="icon" alt="" class="w-10 h-10"/>
         <span>{{label}}</span>
     </div>
 </template>
-<style scoped>
-    .menu-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.1rem;
-        padding: 0.5rem;
-    }
-    .menu-item-img {
-        width: 40px;
-        height: 40px;
-    }
-</style>

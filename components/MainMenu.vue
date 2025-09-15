@@ -9,16 +9,7 @@ const menu = [
 ]
 </script>
 <template>
-    <div class="main-menu">
+    <div class="flex flex-row justify-around items-center p-2">
         <MenuItem v-for="item in menu" :key="item.label" :label="item.label" :icon="item.icon" @click="updateCurrentPage(item.label)" />
     </div>
 </template>
-<style scoped>
-    .main-menu {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        padding: 0.5rem;
-    }
-</style>

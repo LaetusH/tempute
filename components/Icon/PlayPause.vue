@@ -5,7 +5,7 @@
             :key="index"
             class="w-5 h-5 cursor-pointer hover:scale-110 transition"
         >
-            <img :src="icon.path" alt="icon" class="w-full h-full" @click="toggleIcons(icon.name)"/>
+            <img :src="icon.path" :alt="icon.name" class="w-full h-full" @click="toggleIcons(icon.name)"/>
         </div>
     </div>
 </template>

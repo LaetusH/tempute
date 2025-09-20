@@ -10,10 +10,17 @@ useHead({
     { rel: 'apple-touch-icon', href: '/icons/logo-192x192.png' }
   ]
 })
+
+const { user, fetchUser} = useAuth()
+
+onMounted(() => {
+  fetchUser()
+})
 </script>
 <template>
   <div>
-    <NuxtPage />
+    <ScreenLogin v-if="!user" />
+    <MainApp v-else />
   </div>
 </template>
 <style>

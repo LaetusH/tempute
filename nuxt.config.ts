@@ -8,6 +8,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()]
   },
+  pages: false,
   pwa: {
     registerType: 'autoUpdate',
     manifest: {

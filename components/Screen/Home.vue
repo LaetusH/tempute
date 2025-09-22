@@ -2,7 +2,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
         <div v-if="pending">Loading...</div>
         <div v-if="error">Error: {{ error.message }}</div>
-        <CardActivity v-for="activity in activities" :name="activity.name" :category="activity.category"/>
+        <CardActivity v-for="activity in activities" :id="activity.id" :name="activity.name" :category="activity.category"/>
         <CardAddActivity @click="addActivity = true" />
         <ScreenAddActivity v-model:show="addActivity" @activity-added="loadActivities" />
     </div>

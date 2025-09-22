@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
 
   const password_hash = await hashPassword(password)
   const result: any = await query('INSERT INTO users (email, password_hash) VALUES (?, ?)', [email, password_hash])
-  const userId = result.insertId
+  const userId = result.insertId.toString()
 
   // Sign a token and set cookie
   const token = signToken({ id: userId })

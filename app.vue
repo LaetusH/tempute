@@ -23,12 +23,3 @@ onMounted(() => {
     <MainApp v-else />
   </div>
 </template>
-<style>
-    ::-webkit-scrollbar {
-        display: none;
-    }
-    html {
-        scrollbar-width: none;
-    }
-    /* * {outline: 1px solid red;}*/
-</style>

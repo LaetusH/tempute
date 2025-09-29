@@ -11,7 +11,7 @@ const newCategory = ref('')
 const addingCategory = ref(false)
 
 async function loadCategories() {
-  categories.value = await $fetch('/api/categories')
+  categories.value = await $fetch('/api/categories' as string)
 }
 
 async function addCategory() {

@@ -3,9 +3,9 @@
         <div
             v-for="(icon, index) in activeIcons"
             :key="index"
-            class="w-5 h-5 cursor-pointer hover:scale-110 transition"
+            class="w-full h-full cursor-pointer hover:scale-110 transition"
         >
-            <img :src="icon.path" :alt="icon.name" class="w-full h-full" @click="toggleRunning"/>
+            <img :src="icon.path" :alt="icon.name" @click.stop="toggleRunning"/>
         </div>
     </div>
 </template>

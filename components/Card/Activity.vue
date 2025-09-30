@@ -13,10 +13,14 @@ const { id, name, category } = defineProps({
 const { time, running, loadElapsed } = useElapsedTime(id)
 </script>
 <template>
-    <div class="relative flex min-w-[50%] bg-stone-300 h-20 rounded-lg">
-        <span class="absolute top-2 left-3 text-lg">{{ name }}</span>
-        <IconPlayPause :activityId="id" :running="running" @update-running="loadElapsed" class="absolute top-3 right-3"/>
-        <span class="absolute bottom-3 left-3 text-sm">{{ category }}</span>
-        <span class="absolute bottom-3 right-3 text-sm">{{ time }}</span>
+    <div class="relative min-w-[50%] bg-stone-300 h-20 rounded-lg flex flex-col justify-between">
+        <div class="flex items-center justify-between px-3 pt-3 text-lg">
+            <span class="font-bold leading-none">{{ name }}</span>
+            <IconPlayPause :activityId="id" :running="running" @update-running="loadElapsed" class="w-[1em] h-[1em]"/>
+        </div>
+        <div class="flex items-center justify-between px-3 pb-3">
+            <span class="text-sm leading-none">{{ category }}</span>
+            <span class="text-sm leading-none">{{ time }}</span>
+        </div>
     </div>
 </template>

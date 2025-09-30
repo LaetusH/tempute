@@ -51,7 +51,7 @@ onMounted(loadCategories)
 <template>
   <div
     v-if="show"
-    class="fixed inset-0 flex items-start justify-center bg-black/50 z-50"
+    class="fixed inset-0 flex items-start justify-center bg-black/50 z-50 bottom-1/8 sm:bottom-1/10"
   >
     <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-lg mt-15 overflow-y-auto overscroll-contain">
       <h2 class="text-xl font-semibold mb-4">Aktivität hinzufügen</h2>

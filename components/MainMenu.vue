@@ -3,13 +3,13 @@ import {inject} from 'vue'
 
 const {_, updateCurrentPage} = inject('currentPage')
 const menu = [
-    {label: 'Home', icon: '/icons/home-icon.png'},
-    {label: 'Statistics', icon: '/icons/statistics-icon.png'},
-    {label: 'Settings', icon: '/icons/settings-icon.png'}
+    {name: 'Home', label: 'Start', icon: '/icons/icon-home.svg'},
+    {name: 'Statistics', label: 'Statistik', icon: '/icons/icon-statistics.svg'},
+    {name: 'Settings', label: 'Einstellungen', icon: '/icons/icon-settings.svg'}
 ]
 </script>
 <template>
     <div class="flex flex-row justify-around items-center p-2">
-        <MenuItem v-for="item in menu" :key="item.label" :label="item.label" :icon="item.icon" @click="updateCurrentPage(item.label)" />
+        <MenuItem v-for="item in menu" :key="item.name" :label="item.label" :icon="item.icon" @click="updateCurrentPage(item.name)" class="cursor-pointer"/>
     </div>
 </template>

@@ -6,7 +6,7 @@
 		<CardAddActivity @click="addActivity = true" />
 	</div>
 	<Transition name="slide-right" mode="out-in">
-		<ScreenActivityDetail v-if="selectedActivity" :key="selectedActivity.id" :id="selectedActivity.id" :name="selectedActivity.name" :category="selectedActivity.category" @close="closeDetail" />
+		<ScreenActivityDetail v-if="selectedActivity" :key="selectedActivity.id" v-bind="selectedActivity" @close="closeDetail" @deleted="loadActivities"/>
 	</Transition>
 	<ScreenAddActivity v-model:show="addActivity" @activity-added="loadActivities" />
 </template>
@@ -41,7 +41,7 @@ function closeDetail() {
     selectedActivity.value = null
 }
 
-await loadActivities()
+onMounted(loadActivities)
 </script>
 <style scoped>
 .slide-right-enter-active,

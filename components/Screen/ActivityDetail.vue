@@ -9,12 +9,28 @@ const { id, name, category } = defineProps({
     name: String,
     category: String
 })
-const emit = defineEmits<{ (e: 'close'): void }>()
+const emit = defineEmits<{ 
+	(e: 'close'): void
+	(e: 'deleted'): void
+}>()
 
 const { time, running, lastStartDate, lastStopDate, loadElapsed } = useElapsedTime(id)
 
 function close() {
     emit('close')
+}
+
+const showDeleteDialog = ref(false)
+
+async function deleteActivity() {
+	try {
+		await $fetch(`/api/activities/${id}`, {method: 'DELETE'})
+		emit('deleted')
+		emit('close')
+	} catch (err) {
+		console.log('Fehler beim Löschen:', err)
+		alert('Die Aktivität konnte nicht gelöscht werden.')
+	}
 }
 </script>
 <template>
@@ -28,5 +44,9 @@ function close() {
 		<span class="mt-2 text-gray-600">{{ time }}</span><br/>
 		<span v-if="lastStartDate !== ''" class="mt-2 text-gray-600">Zuletzt gestartet: {{ lastStartDate }}</span>
 		<span v-if="lastStopDate !== ''" class="mt-2 text-gray-600">Zuletzt getoppt: {{ lastStopDate }}</span>
+		<button @click="showDeleteDialog = true" class="mt-6 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg self-start">Aktivität löschen</button>
+		<Dialog v-model="showDeleteDialog" @confirm="deleteActivity" title="Aktivität löschen" confirm-label="Löschen">
+			Möchtest du die Aktivität "{{ name }}" wirklich löschen?
+		</Dialog>
 	</div>
 </template>

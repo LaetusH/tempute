@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import { useFormatTimestamp } from '~/composables/useFormatTimestamp'
 
 export function useElapsedTime(activityId: number) {
     const time = ref('00:00')
@@ -21,19 +22,6 @@ export function useElapsedTime(activityId: number) {
             : `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
     }
 
-    function formatTimestamp(ms: number): string {
-        const date = new Date(ms)
-
-        const day = date.getDate().toString().padStart(2, '0')
-        const month = (date.getMonth() + 1).toString().padStart(2, '0') // months are 0-based
-        const year = date.getFullYear()
-
-        const hours = date.getHours().toString().padStart(2, '0')
-        const minutes = date.getMinutes().toString().padStart(2, '0')
-
-        return `${day}.${month}.${year}, ${hours}:${minutes} Uhr`
-    }
-
     async function loadElapsed() {
         const res = await $fetch<{ elapsedMs: number, running: boolean, lastStart?: string, lastStop?: string, serverNow: string }>(`/api/activities/${activityId}/elapsed`)
 
@@ -45,8 +33,8 @@ export function useElapsedTime(activityId: number) {
         running.value = res.running
         lastStart = res.lastStart ? new Date(res.lastStart).getTime() + clockOffset : null
 
-        lastStartDate.value = res.lastStart ? formatTimestamp(new Date(res.lastStart).getTime() + clockOffset) : ''
-        lastStopDate.value = res.lastStop ? formatTimestamp(new Date(res.lastStop).getTime() + clockOffset) : ''
+        lastStartDate.value = res.lastStart ? useFormatTimestamp(new Date(res.lastStart).getTime() + clockOffset) : ''
+        lastStopDate.value = res.lastStop ? useFormatTimestamp(new Date(res.lastStop).getTime() + clockOffset) : ''
 
         updateDisplay()
     }

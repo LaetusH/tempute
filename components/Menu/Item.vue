@@ -6,7 +6,7 @@ defineProps({
 </script>
 <template>
     <div class="flex flex-col items-center gap-0.5 p-2">
-        <img :src="icon" alt="" class="w-10 h-10"/>
+        <img :src="icon" alt="" class="w-full h-full"/>
         <span>{{label}}</span>
     </div>
 </template>

@@ -15,12 +15,14 @@ const maxHours = computed(() =>
         :key="index"
         class="flex flex-col items-center justify-end flex-1 mx-1 h-full"
       >
-        <div
-          class="w-5 sm:w-6 md:w-7 bg-blue-500"
-          :style="{
-            height: `${(entry.hours / maxHours) * 100}%`
-          }"
-        ></div>
+        <div class="relative w-full flex-1 flex items-end justify-center">
+          <div
+            class="w-5 sm:w-6 md:w-7 bg-blue-500"
+            :style="{
+              height: `${(entry.hours / maxHours) * 100}%`
+            }"
+          ></div>
+        </div>
         <span class="mt-1 text-xs sm:text-sm text-gray-600">{{ entry.day }}</span>
         <span class="text-[10px] text-gray-500">{{ entry.hours.toFixed(1) }}h</span>
       </div>

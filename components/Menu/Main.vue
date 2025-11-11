@@ -1,10 +1,10 @@
 <script setup>
 import {inject} from 'vue'
 
-const {_, updateCurrentPage} = inject('currentPage')
+const {_, updateCurrentPage} = inject('navigation')
 const menu = [
     {name: 'Home', label: 'Start', icon: '/icons/icon-home.svg'},
-    {name: 'Statistics', label: 'Statistik', icon: '/icons/icon-statistics.svg'},
+    //{name: 'Statistics', label: 'Statistik', icon: '/icons/icon-statistics.svg'},
     {name: 'Settings', label: 'Einstellungen', icon: '/icons/icon-settings.svg'}
 ]
 </script>

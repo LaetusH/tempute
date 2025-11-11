@@ -11,7 +11,24 @@
 	<ScreenAddActivity v-model:show="addActivity" @activity-added="loadActivities" />
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, inject, watch } from 'vue'
+
+interface NavigationContext {
+	currentPage: Ref<string>, 
+	pageTrigger: Ref<number>,
+	updateCurrentPage: (page: string) => void
+}
+
+const navigation = inject<NavigationContext>('navigation')
+if (!navigation) throw new Error('navigation was not provided')
+
+watch (
+	() => navigation.pageTrigger.value,
+	() => {
+		closeDetail()
+	}
+)
+
 const activities = ref<any[]>([])
 const pending = ref(false)
 const error = ref<any>(null)

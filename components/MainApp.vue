@@ -2,10 +2,13 @@
 import {provide, ref} from 'vue'
 
 const currentPage = ref('Home')
+const pageTrigger = ref(0)
+
 function updateCurrentPage(newPage: string) {
+    pageTrigger.value *= -1
     currentPage.value = newPage
 }
-provide('currentPage', {currentPage, updateCurrentPage})
+provide('navigation', {currentPage, pageTrigger, updateCurrentPage})
 </script>
 <template>
     <div class="flex flex-col min-h-full">

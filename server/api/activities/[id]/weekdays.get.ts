@@ -18,7 +18,8 @@ export default defineEventHandler(async (event) => {
         [activityId]
     )
 
-    let total = [0, 0, 0, 0, 0, 0, 0]
+    const total = [0, 0, 0, 0, 0, 0, 0]
+    const activeDays = [new Set(), new Set(), new Set(), new Set(), new Set(), new Set(), new Set()]
     const now  = new Date()
 
     for (let i = 0; i < starts.length; i++) {
@@ -35,11 +36,18 @@ export default defineEventHandler(async (event) => {
 
             const segmentEnd = nextMidnight < stop ? nextMidnight : stop
             const hours = (segmentEnd.getTime() - current.getTime()) / (1000 * 60 * 60)
+
             total[dayIndex] += hours
+            activeDays[dayIndex].add(current.toDateString())
 
             current = nextMidnight
         }
     }
 
-    return { timePerWeekday: total, serverNow: now.toISOString() }
+    const avgPerDay = total.map((hours, i) => {
+        const daysCount = activeDays[i].size
+        return daysCount > 0 ? hours / daysCount : 0
+    })
+
+    return { timePerDay: total, avgPerDay, serverNow: now.toISOString() }
 })

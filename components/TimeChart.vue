@@ -9,11 +9,11 @@ const maxHours = computed(() =>
 </script>
 
 <template>
-    <div class="flex items-end justify-between w-full h-40 sm:h-56 mt-4 pt-3 sm:pt-5 bg-white rounded-t-xl shadow-lg">
+    <div class="flex items-end justify-between w-full h-40 sm:h-56 sm:pt-5 bg-white shadow-lg">
       <div
         v-for="(entry, index) in data"
         :key="index"
-        class="flex flex-col items-center justify-end flex-1 mx-1 h-full"
+        class="flex flex-col items-center justify-end flex-1 pt-3 sm:pt-0 h-full"
       >
         <div class="relative w-full flex-1 flex items-end justify-center">
           <div

@@ -43,6 +43,7 @@ async function loadActivities() {
 		activities.value = data
 	} catch (err: any) {
 		error.value = err
+		if (err.status === 401) window.location.reload()
 	} finally {
 		pending.value = false
 	}

@@ -23,20 +23,25 @@ export function useElapsedTime(activityId: number) {
     }
 
     async function loadElapsed() {
-        const res = await $fetch<{ elapsedMs: number, running: boolean, lastStart?: string, lastStop?: string, serverNow: string }>(`/api/activities/${activityId}/elapsed`)
+        try {
+            const res = await $fetch<{ elapsedMs: number, running: boolean, lastStart?: string, lastStop?: string, serverNow: string }>(`/api/activities/${activityId}/elapsed`)
 
-        const serverNow = new Date(res.serverNow).getTime()
-        const clientNow = Date.now()
-        clockOffset = clientNow - serverNow
+            const serverNow = new Date(res.serverNow).getTime()
+            const clientNow = Date.now()
+            clockOffset = clientNow - serverNow
 
-        baseElapsed = res.elapsedMs
-        running.value = res.running
-        lastStart = res.lastStart ? new Date(res.lastStart).getTime() + clockOffset : null
+            baseElapsed = res.elapsedMs
+            running.value = res.running
+            lastStart = res.lastStart ? new Date(res.lastStart).getTime() + clockOffset : null
 
-        lastStartDate.value = res.lastStart ? useFormatTimestamp(new Date(res.lastStart).getTime() + clockOffset) : ''
-        lastStopDate.value = res.lastStop ? useFormatTimestamp(new Date(res.lastStop).getTime() + clockOffset) : ''
+            lastStartDate.value = res.lastStart ? useFormatTimestamp(new Date(res.lastStart).getTime() + clockOffset) : ''
+            lastStopDate.value = res.lastStop ? useFormatTimestamp(new Date(res.lastStop).getTime() + clockOffset) : ''
 
-        updateDisplay()
+            updateDisplay()
+        } catch (err: any) {
+            if (err.status === 401) window.location.reload()
+		    console.log('Fehler beim Laden der vergangenen Zeit:', err)
+        }
     }
 
     function updateDisplay() {

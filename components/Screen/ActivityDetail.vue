@@ -34,30 +34,36 @@ async function deleteActivity() {
 		await $fetch(`/api/activities/${id}`, {method: 'DELETE'})
 		emit('deleted')
 		emit('close')
-	} catch (err) {
+	} catch (err: any) {
+		if (err.status === 401) window.location.reload()
 		console.log('Fehler beim Löschen:', err)
 		alert('Die Aktivität konnte nicht gelöscht werden.')
 	}
 }
 
 async function loadChartData() {
-  	const weekDays = ['So','Mo','Di','Mi','Do','Fr','Sa']
-	const res = await $fetch<{ timePerDay: number[], avgPerDay: number[], serverNow: string }>(`/api/activities/${id}/weekdays`)
-	lastRefresh.value = useFormatTimestamp(new Date(res.serverNow).getTime())
-	const durationsByDay = res.timePerDay
-	const averageByDay = res.avgPerDay
-	if (durationsByDay === undefined) throw new TypeError('There is a value missing')
-	if (averageByDay === undefined) throw new TypeError('There is a value missing')
+	try {
+		const weekDays = ['So','Mo','Di','Mi','Do','Fr','Sa']
+		const res = await $fetch<{ timePerDay: number[], avgPerDay: number[], serverNow: string }>(`/api/activities/${id}/weekdays`)
+		lastRefresh.value = useFormatTimestamp(new Date(res.serverNow).getTime())
+		const durationsByDay = res.timePerDay
+		const averageByDay = res.avgPerDay
+		if (durationsByDay === undefined) throw new TypeError('There is a value missing')
+		if (averageByDay === undefined) throw new TypeError('There is a value missing')
 
-	totalTimeChartData.value = weekDays.map((d, idx) => {
-		const arr = durationsByDay[idx]!
-		return { day: d, hours: arr }
-	})
+		totalTimeChartData.value = weekDays.map((d, idx) => {
+			const arr = durationsByDay[idx]!
+			return { day: d, hours: arr }
+		})
 
-	avgTimeChartData.value = weekDays.map((d, idx) => {
-		const arr = averageByDay[idx]!
-		return { day: d, hours: arr }
-	})
+		avgTimeChartData.value = weekDays.map((d, idx) => {
+			const arr = averageByDay[idx]!
+			return { day: d, hours: arr }
+		})
+	} catch (err: any) {
+		if (err.status === 401) window.location.reload()
+		console.log('Fehler beim Laden der Zeit pro Wochentag:', err)
+	}
 }
 
 function onScroll() {

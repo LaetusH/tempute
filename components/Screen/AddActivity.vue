@@ -11,34 +11,49 @@ const newCategory = ref('')
 const addingCategory = ref(false)
 
 async function loadCategories() {
-  	categories.value = await $fetch<{ id: number; name: string }[]>('/api/categories')
+	try {
+  		categories.value = await $fetch<{ id: number; name: string }[]>('/api/categories')
+	} catch (err: any) {
+		if (err.status === 401) window.location.reload()
+		console.log('Fehler beim Laden der Kategorien:', err)
+	}
 }
 
 async function addCategory() {
 	if (!newCategory.value) return
-	const cat = await $fetch<{ id: number; name: string }>('/api/categories', {
-		method: 'POST',
-		body: { name: newCategory.value }
-	})
-	categories.value.push(cat)
-	categoryId.value = cat.id
-	newCategory.value = ''
-	addingCategory.value = false
+	try {
+		const cat = await $fetch<{ id: number; name: string }>('/api/categories', {
+			method: 'POST',
+			body: { name: newCategory.value }
+		})
+		categories.value.push(cat)
+		categoryId.value = cat.id
+		newCategory.value = ''
+		addingCategory.value = false
+	} catch (err: any) {
+		if (err.status === 401) window.location.reload()
+		console.log('Fehler beim Hinzufügen einer neuen Kategorie:', err)
+	}
 }
 
 async function saveActivity() {
 	if (!name.value || !categoryId.value) return
-	await $fetch('/api/activities', {
-		method: 'POST',
-		body: {
-		name: name.value,
-		category_id: categoryId.value
-		}
-	})
-	name.value = ''
-	categoryId.value = null
-	show.value = false
-	emit('activity-added')
+	try {
+		await $fetch('/api/activities', {
+			method: 'POST',
+			body: {
+			name: name.value,
+			category_id: categoryId.value
+			}
+		})
+		name.value = ''
+		categoryId.value = null
+		show.value = false
+		emit('activity-added')
+	} catch (err: any) {
+		if (err.status === 401) window.location.reload()
+		console.log('Fehler beim Hinzufügen der Aktivität:', err)
+	}
 }
 
 async function cancel() {

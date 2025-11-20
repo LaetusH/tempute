@@ -85,7 +85,7 @@ onBeforeUnmount(() => {
   	<div class="fixed bottom-1/8 sm:bottom-1/10 inset-0 bg-gray-100 z-50 flex flex-col">
 		<header class="sticky top-0 bg-gray-100 pb-3 px-6 sm:px-10" :class="scrolled ? 'pt-3 border-b border-gray-300' : 'pt-6'">
 			<div class="flex items-center justify-between" :class="scrolled ? 'flex-row' : 'flex-row sm:items-center sm:justify-between'">
-				<img src="/icons/icon-back.svg" alt="Zurück" @click="close" class="self-center w-[1.25em] h-[1.25em] sm:w-[1.5em] sm:h-[1.5em] hover:scale-110 transition cursor-pointer"/>
+				<img src="/icon-back.svg" alt="Zurück" @click="close" class="self-center w-[1.25em] h-[1.25em] sm:w-[1.5em] sm:h-[1.5em] hover:scale-110 transition cursor-pointer"/>
 				<h1 class="font-bold text-xl sm:text-2xl" :class="scrolled ? 'text-center flex-1' : ''">
 					{{ name }}
 				</h1>

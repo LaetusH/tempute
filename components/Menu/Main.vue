@@ -3,9 +3,9 @@ import {inject} from 'vue'
 
 const {_, updateCurrentPage} = inject('navigation')
 const menu = [
-    {name: 'Home', label: 'Start', icon: '/icons/icon-home.svg'},
-    //{name: 'Statistics', label: 'Statistik', icon: '/icons/icon-statistics.svg'},
-    {name: 'Settings', label: 'Einstellungen', icon: '/icons/icon-settings.svg'}
+    {name: 'Home', label: 'Start', icon: '/icon-home.svg'},
+    //{name: 'Statistics', label: 'Statistik', icon: '/icon-statistics.svg'},
+    {name: 'Settings', label: 'Einstellungen', icon: '/icon-settings.svg'}
 ]
 </script>
 <template>

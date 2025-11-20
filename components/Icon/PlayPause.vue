@@ -19,9 +19,9 @@ const { activityId, running } = defineProps({
 })
 
 const icons = [
-    {name: 'play', path: '/icons/icon-play.svg'},
-    //{name: 'stop', path: '/icons/icon-stop.svg'},
-    {name: 'pause', path: '/icons/icon-pause.svg'}
+    {name: 'play', path: '/icon-play.svg'},
+    //{name: 'stop', path: '/icon-stop.svg'},
+    {name: 'pause', path: '/icon-pause.svg'}
 ]
 
 const activeIcons = ref([icons[0]])

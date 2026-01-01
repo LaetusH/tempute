@@ -36,11 +36,11 @@ watch (
 
 async function toggleRunning() {
     if (running) {
-        emit('updateRunning')
         await $fetch(`/api/activities/${activityId}/stop`, { method: 'POST' })
-    } else {
         emit('updateRunning')
+    } else {
         await $fetch(`/api/activities/${activityId}/start`, { method: 'POST' })
+        emit('updateRunning')
     }
 }
 </script>
